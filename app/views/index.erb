@@ -1,23 +1,35 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
+  <h1>Welcome to le Blog!</h1>
   <p>Hello, world!</p>
-
+  <a href="/new_post"><button>Create new post</button></a>
   <table>
     <tr>
-      <th>File Description</th>
-      <th>File Location</th>
+      <th width="300px">Post</th>
+      <th colspan="3">Last updated</th>
+    </tr>
+    <% @posts = Post.all.order(updated_at: :desc) %>
+    <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %><br>by <%= post.author %></td>
+      <td><%= post.updated_at %></td>
+      <td>
+        <a href="/view_post/<%= post.id %>"><button>View</button></a>
+      </td>
+      <td>
+        <a href="/edit_post/<%= post.id %>"><button>Edit</button></a>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <th width="100%" colspan="4">Tags</th>
     </tr>
     <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
+      <td colspan="4">
+        <% @tags = Tag.all %>
+        <% @tags.each do |tag| %>
+        <a href="/view_tags/<%= tag.id %>"><%= tag.name %></a>&nbsp;
+        <% end %>
+      </td>
     </tr>
   </table>
 </div>
