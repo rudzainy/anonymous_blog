@@ -29,13 +29,9 @@
           <input type="text" name="tags" value="<% @post.tags.each do |tag| %><%= tag.name %>, <% end %>">
         </td>
       </tr>
-      <tr>
-        <td colspan="2">
-          <input type="submit" value="Edit post">
-
-        </td>
-      </tr>
     </table>
-  </form>
+    <input type="submit" value="Edit post" class="button">
+  </form><br>
   <a href="/delete_post/<%= @post.id %>"><button>Delete post</button></a>
+  <a href="../../"><button>Main Page</button></a>
 </div>

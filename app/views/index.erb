@@ -1,23 +1,17 @@
 <div class="container">
   <h1>Welcome to le Blog!</h1>
-  <p>Hello, world!</p>
-  <a href="/new_post"><button>Create new post</button></a>
+  <p><%= @error %></p>
+  <div class="new_post_button"><a href="/new_post"><button>Create new post</button></a></div>
   <table>
     <tr>
-      <th width="300px">Post</th>
-      <th colspan="3">Last updated</th>
+      <th class="post">Post</th>
+      <th>Last updated</th>
     </tr>
     <% @posts = Post.all.order(updated_at: :desc) %>
     <% @posts.each do |post| %>
     <tr>
-      <td><%= post.title %><br>by <%= post.author %></td>
-      <td><%= post.updated_at %></td>
-      <td>
-        <a href="/view_post/<%= post.id %>"><button>View</button></a>
-      </td>
-      <td>
-        <a href="/edit_post/<%= post.id %>"><button>Edit</button></a>
-      </td>
+      <td><a href="/view_post/<%= post.id %>"><%= post.title %></a><br><span class="author">by <%= post.author %></span></td>
+      <td class="timestamp"><%= post.updated_at %></td>
     </tr>
     <% end %>
     <tr>

@@ -1,13 +1,13 @@
 <div class="container">
   <h1>View post</h1>
-  <p>Instructions here</p>
+  <p><%= @error %></p>
 
   <table>
     <tr>
-      <td><%= @post.title %></td>
+      <th><%= @post.title %></th>
     </tr>
     <tr>
-      <td>by <%= @post.author %></td>
+      <td class="author">by <%= @post.author %></td>
     </tr>
     <tr>
       <td><%= @post.content %></td>
@@ -21,6 +21,8 @@
       </td>
     <tr>
       <td align="right">
+
+  <a href="/edit_post/<%= @post.id %>"><button>Edit</button></a>
         <a href="../../"><button>Main Page</button></a>
       </td>
     </tr>
